@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "439275755662",
+    "project_id": "andrope-inn",
+    "storage_bucket": "andrope-inn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439275755662:android:16397d482aa7461cd291df",
+        "android_client_info": {
+          "package_name": "com.example.andropeinn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClQ9LJ6upnOu3bXkFas3x9KWGTZoTNYOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

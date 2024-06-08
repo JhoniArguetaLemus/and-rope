@@ -71,9 +71,7 @@ class ComidaAdapter( val context: Context,  val list:List<ComidaData>): Recycler
                     comida.title,
                     holder.editextCant.text.toString().toInt(),
                     comida.precio.toFloat()
-
                 )
-
                 Toast.makeText(context, "${comida.title} agregado correctamente", Toast.LENGTH_SHORT).show()
 
 

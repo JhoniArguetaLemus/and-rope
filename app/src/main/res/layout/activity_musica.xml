@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5ebeb"
+    android:orientation="vertical"
+
+    tools:context=".musica">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20sp"
+        android:layout_gravity="center"
+        android:text="¿Qué tipo de música deseas en tu evento?"
+        android:textSize="20sp" />
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30sp"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/musica"
+        app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecciona tu genero musical favorito"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <Spinner
+        android:id="@+id/generoSpinner"
+        android:layout_width="258dp"
+        android:layout_marginBottom="20sp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnAceptar"
+        android:layout_width="159dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="70sp"
+        android:backgroundTint="#2772db"
+        android:text="Aceptar" />
+
+</LinearLayout>

@@ -1,13 +1,17 @@
 package com.example.andropeinn
 
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Intent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
 
 import android.view.View
 
@@ -20,6 +24,7 @@ import androidx.appcompat.app.AlertDialog
 
 import com.example.andropeinn.databinding.ActivityReservaBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 import com.itextpdf.kernel.pdf.PdfDocument
 import com.itextpdf.kernel.pdf.PdfWriter
@@ -29,11 +34,15 @@ import com.itextpdf.layout.element.Paragraph
 import com.itextpdf.layout.property.TextAlignment
 
 
-
-
 class reserva : AppCompatActivity() {
+   lateinit var edtTime:EditText
+    var hour=0
+    var minutes=0
+    var savedHour=0
+    var savedMinutes=0
+    lateinit var txtTotal:TextView
 
-     private var contador=1;
+     private var contador=20;
     lateinit var reservaBinding: ActivityReservaBinding
     private val STORAGE_CODE=1999;
     private lateinit var nombre_local:TextView
@@ -44,6 +53,8 @@ class reserva : AppCompatActivity() {
 
    private lateinit var fecha:String
 
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +62,16 @@ class reserva : AppCompatActivity() {
         setContentView(reservaBinding.root)
 
 
-        //editext cantidad
 
+
+
+        //firebase
+        auth=FirebaseAuth.getInstance()
+
+        //texto total
+        txtTotal=findViewById(R.id.txtTotal)
+        txtTotal.setText("Total: $ ${contador*9.50}")
+        //editext cantidad
         cantidad=findViewById(R.id.edtCantidad)
 
         val sqLite=SQLite(this)
@@ -87,6 +106,8 @@ class reserva : AppCompatActivity() {
         reservaBinding.btnMas.setOnClickListener{
 
               aumentarContador()
+
+
         }
 
         reservaBinding.btnMenos.setOnClickListener{
@@ -99,19 +120,33 @@ class reserva : AppCompatActivity() {
 
         reservaBinding.btnHacerReserva.setOnClickListener {
 
-            if (rbPagoEfectivo.isChecked){
+            val cantidadPersonas=reservaBinding.edtCantidad.text.toString()
+            if(reservaBinding.edtFecha.text.isNullOrEmpty()){
+                reservaBinding.edtFecha.error="Debe seleccionar una fecha valida"
+            }else if(reservaBinding.edtTime.text.isNullOrEmpty()){
+                reservaBinding.edtTime.error="Debe seleccionar una hora valida"
+            }
+            else if (rbPagoEfectivo.isChecked ){
 
-                metodoPago="efectivo"
-                createPdf()
+                val db=SQLite(this)
+                db.insertarTotal(contador*9.50)
+                db.close()
+
+
+               var alertDialog=AlertDialog.Builder(this)
+                   .setMessage("Reserva realizada correctamente")
+                   .setCancelable(true)
+                   .setPositiveButton("Aceptar"){_, _->
+                       startActivity(Intent(this, fin_reserva::class.java))
+                   }
+                   .show()
+
+
             }else if(rbPagoTarjeta.isChecked){
-                metodoPago="tarjeta de credito/debito"
-                createPdf()
+                startActivity(Intent(this, pago_tarjeta::class.java))
             }else{
                 selecMetodoPago(rbPagoTarjeta)
             }
-
-
-
 
         }
 
@@ -122,6 +157,58 @@ class reserva : AppCompatActivity() {
         edtFecha.setOnClickListener{
             showDatePicker()
         }
+
+        //hora
+
+         edtTime=findViewById<EditText>(R.id.edtTime)
+
+        edtTime.setOnClickListener{showTimePickerDialog()}
+
+    }
+
+
+    //accion para regresar a la activity anterior
+
+    override fun onSupportNavigateUp(): Boolean {
+
+        onBackPressed()
+        return  true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.locales->startActivity(Intent(this, Locales::class.java))
+            R.id.cerrarSesion->{
+                val alertDialog=AlertDialog.Builder(this)
+                    .setMessage("¿Deseas cerrar sesión?")
+                    .setCancelable(true)
+                    .setPositiveButton("Aceptar"){_, _->
+                        auth.signOut()
+                        startActivity(Intent(this, Login::class.java))
+
+                        val db=SQLite(this)
+                        db.eliminarUsuario()
+                    }
+                    .setNegativeButton("Cancelar"){_, _->}
+                    .show()
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showTimePickerDialog() {
+      val timePicker=TimePickerFragment{onTimeSelected(it)}
+        timePicker.show(supportFragmentManager, "time")
+    }
+
+    private  fun onTimeSelected(time:String) {
+       edtTime.setText(" $time")
 
     }
 
@@ -223,25 +310,27 @@ class reserva : AppCompatActivity() {
 
             val valorC=reservaBinding.edtCantidad.text.toString().toInt()
             contador=valorC
-            contador ++
+            contador=contador+5
         }
 
         reservaBinding.edtCantidad.setText(contador.toString())
+
+        txtTotal.setText("Total: $ ${contador*9.50}")
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun disminuirContador(){
-        if(contador>1){
+        if(contador>20){
             val valorC=reservaBinding.edtCantidad.text.toString().toInt()
             contador=valorC
-            contador--
+            contador=contador-5
         }
 
+        txtTotal.setText("Total: $ ${contador*9.50}")
         reservaBinding.edtCantidad.setText(contador.toString())
     }
 
-
-    
 
 
 

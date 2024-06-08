@@ -24,7 +24,7 @@ class resumen_reserva : AppCompatActivity() {
         val titulo=findViewById<TextView>(R.id.txtTitle)
         val floReserva=findViewById<FloatingActionButton>(R.id.floReserva)
         floReserva.setOnClickListener{
-            startActivity(Intent(this, reserva::class.java))
+            startActivity(Intent(this, musica::class.java))
         }
 
 
@@ -82,7 +82,6 @@ class resumen_reserva : AppCompatActivity() {
 
 
                     val miObjeto = ReservaData(id,
-
                         imagen,
                         titulo,
                         cantidad.toString(),

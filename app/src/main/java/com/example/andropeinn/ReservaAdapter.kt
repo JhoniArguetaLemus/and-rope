@@ -42,6 +42,8 @@ class ReservaAdapter(val context: Context,val list:List<ReservaData>):RecyclerVi
         holder.total.text="Total: $ "+lista.total
 
 
+
+
         holder.btnEliminar.setOnClickListener {
             val database=SQLite(context)
             database.eliminarComida(lista.id)

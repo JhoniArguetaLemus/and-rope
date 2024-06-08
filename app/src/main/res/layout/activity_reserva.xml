@@ -23,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
@@ -45,18 +46,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/reserva_bg"
             android:orientation="vertical">
 
 
-
-
-
-
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="126dp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/reservation"
@@ -77,14 +74,29 @@
 
             <EditText
                 android:id="@+id/edtFecha"
-                android:layout_width="wrap_content"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
                 android:hint="Selecciona la fecha"
+                android:focusable="false"
+                android:clickable="false"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/edtTime"
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="Selecciona la hora"
+                android:textAlignment="center"
+                android:textSize="25sp" />
+
+
 
 
             <TextView
@@ -134,6 +146,13 @@
 
 
             <TextView
+                android:id="@+id/txtTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,6 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#050404"
+                    android:layout_marginTop="20sp"
                     android:theme="@style/RadioButtonStyle"
                     android:text="Efectivo"
                     android:textSize="25sp" />
@@ -169,6 +189,7 @@
                     android:backgroundTint="#050404"
                     android:theme="@style/RadioButtonStyle"
                     android:text="Tarjeta de credito/debito"
+                    android:layout_marginTop="20sp"
                     android:textSize="25sp" />
 
 
@@ -183,7 +204,7 @@
                 android:layout_width="205dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="#22313f"
                 android:text="Reservar"
                 android:textColor="#e4f1fe"

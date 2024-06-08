@@ -13,6 +13,30 @@
         android:theme="@style/Theme.AndropeINN"
         tools:targetApi="31">
         <activity
+            android:name=".historial_reservaciones"
+            android:exported="true"
+            android:label="Historial de reservas"
+            >
+
+        </activity>
+        <activity
+            android:name=".activity_soporte"
+            android:exported="false" />
+        <activity
+            android:name=".soporte_inicio_sesion"
+            android:exported="false" />
+        <activity
+            android:name=".fin_reserva"
+            android:exported="false" />
+        <activity
+            android:name=".pago_tarjeta"
+            android:exported="true"
+            android:label="Pagos"></activity>
+        <activity
+            android:name=".musica"
+            android:exported="true"
+            android:label="Tipo de música" />
+        <activity
             android:name=".resumen_reserva"
             android:exported="false" />
         <activity
@@ -21,11 +45,7 @@
         <activity
             android:name=".Menu"
             android:exported="false"
-            android:label="Menú">
-
-
-
-        </activity>
+            android:label="Menú" />
         <activity
             android:name=".crear_cuenta"
             android:exported="false"
@@ -40,7 +60,7 @@
             android:label="La taberna del viejo faro" />
         <activity
             android:name=".reserva"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".espejo_encantado"
             android:exported="false"
@@ -51,21 +71,17 @@
             android:label="El Jardin de Las Mariposas" />
         <activity
             android:name=".Login"
-            android:exported="true">
+            android:exported="true"></activity>
+        <activity
+            android:name=".Locales"
+            android:exported="true"
+            android:label="Locales">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-        </activity>
-        <activity
-            android:name=".Locales"
-            android:exported="false">
-
-
 
         </activity>
         <activity

@@ -5,6 +5,8 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 
 
 import android.widget.TextView
@@ -81,11 +83,37 @@ class Locales : AppCompatActivity() {
 
         binding.btnEstrellas.setOnClickListener{ cambiarActivity(las_estrellas()) }
 
-        binding.btnLogout.setOnClickListener{
-              logout()
-        }
+
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.historial, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.historial_reservas->startActivity(Intent(this, historial_reservaciones::class.java))
+            R.id.cerrarSesion->{
+                val alertDialog=AlertDialog.Builder(this)
+                    .setMessage("¿Deseas cerrar sesión?")
+                    .setCancelable(true)
+                    .setPositiveButton("Aceptar"){_, _->
+                        auth.signOut()
+                        startActivity(Intent(this, Login::class.java))
+
+                        val db=SQLite(this)
+                        db.eliminarUsuario()
+                    }
+                    .setNegativeButton("Cancelar"){_, _->}
+                    .show()
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun cambiarActivity(activity:Activity){
         startActivity(Intent(this,activity::class.java ))

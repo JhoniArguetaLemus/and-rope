@@ -33,7 +33,20 @@ class Comida : Fragment() {
             val comidaList= listOf(
                 ComidaData(R.drawable.arroz_pollo, "Arroz con pollo", "2.50"),
                 ComidaData(R.drawable.pechuga_arroz, "Pechuga con arroz", "3.25"),
-                ComidaData(R.drawable.carne_arroz, "Carne azada con arroz y vegetales", "3.25")
+                ComidaData(R.drawable.carne_arroz, "Carne azada con arroz y vegetales", "3.25"),
+
+                ComidaData(R.drawable.ensalada, "Ensalada", "2.00"),
+                ComidaData(R.drawable.sopa, "Sopa de pollo", "2.75"),
+                ComidaData(R.drawable.pasta, "Pasta a la boloñesa", "3.75"),
+                ComidaData(R.drawable.tacos, "Tacos", "3.00"),
+                ComidaData(R.drawable.empanadas, "Empanadas", "2.50"),
+                ComidaData(R.drawable.fajitas, "Fajitas de pollo", "4.25"),
+                ComidaData(R.drawable.lasanna, "Lasaña", "4.50"),
+                ComidaData(R.drawable.burrito, "Burrito", "3.75"),
+                ComidaData(R.drawable.paella, "Paella", "5.50"),
+                ComidaData(R.drawable.pollo_frito, "Pollo frito", "3.00"),
+                ComidaData(R.drawable.bistec, "Bistec", "5.00"),
+                ComidaData(R.drawable.filete_pescado, "Filete de pescado", "4.75")
             )
 
             recyclerView.adapter=ComidaAdapter(requireContext(), comidaList)

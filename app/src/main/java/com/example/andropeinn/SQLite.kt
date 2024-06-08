@@ -20,10 +20,16 @@ class SQLite(val context:Context):SQLiteOpenHelper(context, DATABASE_NAME, null,
         val sql="""
             CREATE TABLE comida (id integer primary key autoincrement, imagen INTEGER,  nombre TEXT, cantidad INTEGER, precio REAL)
         """.trimIndent()
+
         val usuario="""
             create table usuario (id integer primary key autoincrement, email TEXT, contrasena TEXT)
         """.trimIndent()
-        db!!.execSQL(usuario)
+
+        val total="""
+            create table total(id integer primary key autoincrement, total REAL )
+        """.trimIndent()
+        db!!.execSQL(total)
+        db.execSQL(usuario)
         db.execSQL(sql)
         db.execSQL(local)
     }
@@ -31,6 +37,17 @@ class SQLite(val context:Context):SQLiteOpenHelper(context, DATABASE_NAME, null,
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")
     }
+
+    fun insertarTotal(total: Double){
+
+        val db=this.writableDatabase
+        val values=ContentValues()
+        values.put("total", total)
+        db.insert("total", null, values)
+        db.close()
+
+    }
+
 
     public fun insertarComida(imagen:Int, nombre:String, cantidad:Int, precio:Float){
         val db=this.writableDatabase

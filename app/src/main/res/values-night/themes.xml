@@ -3,5 +3,5 @@
     <style name="Base.Theme.AndropeINN" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/white</item>
-    </style>
+    </style>\
 </resources>

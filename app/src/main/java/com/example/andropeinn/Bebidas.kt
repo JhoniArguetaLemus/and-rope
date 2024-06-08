@@ -34,7 +34,15 @@ class Bebidas : Fragment() {
         val comidaList= listOf(
             ComidaData(R.drawable.coca, "Coca cola en lata", "1.00"),
             ComidaData(R.drawable.fanta, "Fanta vidrio", "0.75"),
-            ComidaData(R.drawable.crma, "Crema soda vidrio", "0.75")
+            ComidaData(R.drawable.crma, "Crema soda vidrio", "0.75"),
+            ComidaData(R.drawable.sprite, "Sprite lata", "1.00"),
+            ComidaData(R.drawable.pepsi, "Pepsi botella", "1.25"),
+            ComidaData(R.drawable.salutaris, "Salutaris", "0.75"),
+            ComidaData(R.drawable.jugo_naranja, "Jugo de naranja", "1.25"),
+            ComidaData(R.drawable.jugo_manzana, "Jugo de manzana", "0.75"),
+            ComidaData(R.drawable.te_helado, "Té helado", "1.00"),
+            ComidaData(R.drawable.cafe, "Café", "0.50"),
+            ComidaData(R.drawable.chocolate_caliente, "Chocolate caliente", "0.50")
         )
 
         recyclerView.adapter=ComidaAdapter(requireContext(), comidaList)

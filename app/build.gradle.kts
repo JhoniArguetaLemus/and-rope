@@ -36,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures{
         viewBinding=true
     }
@@ -48,6 +49,7 @@ android {
 dependencies {
 
 
+    implementation("androidx.activity:activity:1.8.0")
     val lottieVersion="6.3.0"
     var firebase_bom="32.7.2"
     val itexPdf="7.1.15"
